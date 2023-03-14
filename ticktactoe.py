@@ -7,6 +7,8 @@
 import random
 import os
 import string
+import time
+import random
 os.system('color')
 
 X_SIGN = "X"
@@ -177,6 +179,14 @@ def checkIsWin(board, x, y):
         checkAntiDiagonalWin(board=board, x=x, y=y)):
         return True
     return False
+def printWinningMessage(message):
+    i = 1
+    while (True):
+        for j in range(40):
+            print("\t" * random.randint(0, 9), message)
+        time.sleep(0.4)
+        os.system('clear')
+        i = i + 1
 
 def gamePlay(board, player_1, player_2):
     isOver = False
@@ -185,11 +195,15 @@ def gamePlay(board, player_1, player_2):
     while not (isOver):
         isOver = player_1.move()
         if (isOver):
-            print("Game is over. Winner is {0}".format(player_1.name))
+            message = "Chuc mung {0} xinh dep tuyet voi ^^".format(player_1.name)
+            printWinningMessage(message=message)
+
         isOver = player_2.move()
         if (isOver):
-            print("Game is over. Winner is {0}".format(player_2.name))
+            message = "Chuc mung {0}".format(player_2.name)
+            printWinningMessage(message=message)
     print("Game over !!!!")
+
 
 if __name__ == "__main__":
     drawBoard(board=board)
